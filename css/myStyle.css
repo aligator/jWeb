@@ -1,0 +1,19 @@
+.right {
+    background: red;
+    float: right;
+}
+
+.left {
+    background: blue;
+    float: left;
+}
+
+.top {
+    background: green;
+    float: top;
+    margin-outside: 0;
+}
+
+body {
+    background: black;
+}
