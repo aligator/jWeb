@@ -9,9 +9,14 @@ import (
 
 func viewHandler(writer http.ResponseWriter, reader *http.Request) {
 	NewPage(css.NewCss("myStyle.css"), "Hello",
-		NewDiv("top", NewText("hey")),
-		NewDiv("left", NewText("What's up?"), NewText("lalilu")),
-		NewDiv("right", NewText("llalalla"))).RenderTemplate(writer)
+		Div("top", H1("hey")),
+
+		Div("left",
+			P("What's up?"),
+			Br(), Br(), Br(),
+			P("lalilu")),
+
+		Div("right", P("llalalla"))).RenderTemplate(writer)
 }
 
 func main() {

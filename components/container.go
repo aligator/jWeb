@@ -64,7 +64,7 @@ func (cont *Container) renderContainer(writer io.Writer) (string, error) {
 
 func NewContainer(templateName string, compData ContainerData) *Container {
 	component := &Container{
-		Component: NewComponent(templateName),
+		Component: *NewComponent(templateName),
 		Data:      compData,
 	}
 

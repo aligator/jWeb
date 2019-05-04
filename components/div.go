@@ -10,7 +10,7 @@ type DivContainer struct {
 	Data *DivData
 }
 
-func NewDiv(classes string, children ...Templated) *DivContainer {
+func Div(classes string, children ...Templated) *DivContainer {
 	div := &DivData{
 		Classes:  classes,
 		Children: children,

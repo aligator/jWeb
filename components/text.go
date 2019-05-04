@@ -22,13 +22,25 @@ func (comp *TextComponent) RenderTemplate(writer http.ResponseWriter) {
 	comp.renderTemplate(writer, comp.Data)
 }
 
-func NewText(text string) *TextComponent {
+func NewText(text string, tag string) *TextComponent {
+	if !tagnameRegexp.MatchString(tag) {
+		panic(tag + " is not a valid tag")
+	}
+
 	component := &TextComponent{
-		NewComponent("text.html"),
-		TextData{
+		Component: *NewDirectTemplateComponent(tag, "<"+tag+">{{.Text}}</"+tag+">"),
+		Data: TextData{
 			Text: text,
 		},
 	}
 
 	return component
+}
+
+func H1(text string) *TextComponent {
+	return NewText(text, "h1")
+}
+
+func P(text string) *TextComponent {
+	return NewText(text, "p")
 }
