@@ -1,4 +1,4 @@
-package filetypes
+package css
 
 import (
 	"log"
@@ -24,11 +24,11 @@ func NewCss(filename string) *Css {
 	}
 }
 
-func GetCssBaseFolder() string {
+func GetBaseFolder() string {
 	return baseFolder
 }
 
-func SetCssBaseFolder(folderPath string) {
+func SetBaseFolder(folderPath string) {
 	if baseRegexp.MatchString(baseFolder) {
 		baseFolder = folderPath
 	} else {
