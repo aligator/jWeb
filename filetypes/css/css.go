@@ -37,5 +37,5 @@ func SetBaseFolder(folderPath string) {
 }
 
 func (css *Css) GetPath() string {
-	return baseFolder + "/" + css.filename
+	return baseFolder + css.filename
 }
