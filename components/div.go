@@ -12,7 +12,7 @@ type DivData struct {
 
 type DivContainer struct {
 	*Container
-	Data DivData
+	Data *DivData
 }
 
 func (cont *DivContainer) WriteTemplate(writer io.Writer) error {
@@ -23,7 +23,12 @@ func (cont *DivContainer) RenderTemplate(writer http.ResponseWriter) {
 	cont.Container.RenderTemplate(writer)
 }
 
-func NewDiv(div DivData) *DivContainer {
+func NewDiv(classes string, children ...Templated) *DivContainer {
+	div := &DivData{
+		Classes:  classes,
+		Children: children,
+	}
+
 	component := &DivContainer{
 		Container: NewContainer(ContainerData{
 			TemplateName: "div.html",

@@ -9,27 +9,9 @@ import (
 
 func viewHandler(writer http.ResponseWriter, reader *http.Request) {
 	NewPage(css.NewCss("myStyle.css"), "Hello",
-		[]Templated{
-			NewDiv(DivData{
-				Classes: "top",
-				Children: []Templated{
-					NewText("hey"),
-				},
-			}),
-			NewDiv(DivData{
-				Classes: "left",
-				Children: []Templated{
-					NewText("hey"),
-					NewText("What's up?"),
-				},
-			}),
-			NewDiv(DivData{
-				Classes: "right",
-				Children: []Templated{
-					NewText("llalalla"),
-				},
-			}),
-		}).RenderTemplate(writer)
+		NewDiv("top", NewText("hey")),
+		NewDiv("left", NewText("What's up?"), NewText("lalilu")),
+		NewDiv("right", NewText("llalalla"))).RenderTemplate(writer)
 }
 
 func main() {

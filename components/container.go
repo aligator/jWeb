@@ -15,7 +15,7 @@ type ContainerData struct {
 }
 
 type finalContainerData struct {
-	Data     *interface{}
+	Data     interface{}
 	Children template.HTML
 }
 

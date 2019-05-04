@@ -25,7 +25,7 @@ func (cont *PageContainer) RenderTemplate(writer http.ResponseWriter) {
 	cont.Container.RenderTemplate(writer)
 }
 
-func NewPage(style *css.Css, title string, body []Templated) *PageContainer {
+func NewPage(style *css.Css, title string, body ...Templated) *PageContainer {
 	page := PageData{
 		Style: *style,
 		Title: title,
