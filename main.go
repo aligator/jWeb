@@ -8,13 +8,17 @@ import (
 )
 
 func viewHandler(writer http.ResponseWriter, reader *http.Request) {
+
+	var leftComps []Templated
+
+	for i := 0; i < 5; i++ {
+		leftComps = append(leftComps, P("What's up?"))
+	}
+
 	NewPage(css.NewCss("myStyle.css"), "Hello",
 		Div("top", H1("hey")),
 
-		Div("left",
-			P("What's up?"),
-			Br(), Br(), Br(),
-			P("lalilu")),
+		Div("left", leftComps...),
 
 		Div("right", P("llalalla"))).RenderTemplate(writer)
 }
