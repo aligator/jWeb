@@ -9,9 +9,8 @@ import (
 )
 
 type ContainerData struct {
-	Data         interface{}
-	Children     *[]Templated
-	TemplateName string
+	Data     interface{}
+	Children *[]Templated
 }
 
 type finalContainerData struct {
@@ -31,7 +30,7 @@ func (cont *Container) WriteTemplate(writer io.Writer) error {
 		return err
 	}
 
-	return cont.writeTemplate(writer, cont.Data.TemplateName, finalContainerData{
+	return cont.writeTemplate(writer, finalContainerData{
 		Data:     &cont.Data.Data,
 		Children: template.HTML(renderedContent),
 	})
@@ -42,7 +41,7 @@ func (cont *Container) RenderTemplate(writer http.ResponseWriter) {
 
 	cont.MustOrInternalServerError(writer, err)
 
-	cont.renderTemplate(writer, cont.Data.TemplateName, finalContainerData{
+	cont.renderTemplate(writer, finalContainerData{
 		Data:     &cont.Data.Data,
 		Children: template.HTML(renderedContent),
 	})
@@ -63,9 +62,9 @@ func (cont *Container) renderContainer(writer io.Writer) (string, error) {
 	return bodyBuffer.String(), nil
 }
 
-func NewContainer(compData ContainerData) *Container {
+func NewContainer(templateName string, compData ContainerData) *Container {
 	component := &Container{
-		Component: NewComponent(compData.TemplateName),
+		Component: NewComponent(templateName),
 		Data:      compData,
 	}
 

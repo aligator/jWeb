@@ -15,11 +15,11 @@ type TextComponent struct {
 }
 
 func (comp *TextComponent) WriteTemplate(writer io.Writer) error {
-	return comp.writeTemplate(writer, "text.html", comp.Data)
+	return comp.writeTemplate(writer, comp.Data)
 }
 
 func (comp *TextComponent) RenderTemplate(writer http.ResponseWriter) {
-	comp.renderTemplate(writer, "text.html", comp.Data)
+	comp.renderTemplate(writer, comp.Data)
 }
 
 func NewText(text string) *TextComponent {

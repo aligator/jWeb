@@ -23,10 +23,9 @@ func NewPage(style *css.Css, title string, body ...Templated) *PageContainer {
 	}
 
 	component := &PageContainer{
-		Container: NewContainer(ContainerData{
-			TemplateName: "page.html",
-			Data:         &page,
-			Children:     &body,
+		Container: NewContainer("page.html", ContainerData{
+			Data:     &page,
+			Children: &body,
 		}),
 		Data: page,
 	}

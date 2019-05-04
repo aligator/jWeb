@@ -10,11 +10,15 @@ import (
 type ComponentData interface{}
 
 type Component struct {
-	templates *template.Template
+	templ        *template.Template
+	templateName string
 }
 
-func NewComponent(templates ...string) Component {
-	return Component{template.Must(template.ParseFiles(templates...))}
+func NewComponent(templ string) Component {
+	return Component{
+		templ:        template.Must(template.ParseFiles(templ)),
+		templateName: templ,
+	}
 }
 
 func (comp *Component) MustOrInternalServerError(writer http.ResponseWriter, err error) {
@@ -25,12 +29,12 @@ func (comp *Component) MustOrInternalServerError(writer http.ResponseWriter, err
 	}
 }
 
-func (comp *Component) renderTemplate(writer http.ResponseWriter, tmpl string, compData ComponentData) {
-	err := comp.writeTemplate(writer, tmpl, compData)
+func (comp *Component) renderTemplate(writer http.ResponseWriter, compData ComponentData) {
+	err := comp.writeTemplate(writer, compData)
 	comp.MustOrInternalServerError(writer, err)
 }
 
-func (comp *Component) writeTemplate(writer io.Writer, tmpl string, compData ComponentData) error {
-	err := comp.templates.ExecuteTemplate(writer, tmpl, compData)
+func (comp *Component) writeTemplate(writer io.Writer, compData ComponentData) error {
+	err := comp.templ.Execute(writer, compData)
 	return err
 }

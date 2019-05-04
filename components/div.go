@@ -17,11 +17,11 @@ func NewDiv(classes string, children ...Templated) *DivContainer {
 	}
 
 	component := &DivContainer{
-		Container: NewContainer(ContainerData{
-			TemplateName: "div.html",
-			Data:         &div,
-			Children:     &div.Children,
-		}),
+		Container: NewContainer("div.html",
+			ContainerData{
+				Data:     &div,
+				Children: &div.Children,
+			}),
 		Data: div,
 	}
 
