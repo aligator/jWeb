@@ -1,10 +1,5 @@
 package components
 
-import (
-	"io"
-	"net/http"
-)
-
 type DivData struct {
 	Classes  string
 	Children []Templated
@@ -13,14 +8,6 @@ type DivData struct {
 type DivContainer struct {
 	*Container
 	Data *DivData
-}
-
-func (cont *DivContainer) WriteTemplate(writer io.Writer) error {
-	return cont.Container.WriteTemplate(writer)
-}
-
-func (cont *DivContainer) RenderTemplate(writer http.ResponseWriter) {
-	cont.Container.RenderTemplate(writer)
 }
 
 func NewDiv(classes string, children ...Templated) *DivContainer {

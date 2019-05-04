@@ -1,9 +1,7 @@
 package components
 
 import (
-	"io"
 	"jWeb/filetypes/css"
-	"net/http"
 )
 
 type PageData struct {
@@ -15,14 +13,6 @@ type PageData struct {
 type PageContainer struct {
 	*Container
 	Data PageData
-}
-
-func (cont *PageContainer) WriteTemplate(writer io.Writer) error {
-	panic("implement me")
-}
-
-func (cont *PageContainer) RenderTemplate(writer http.ResponseWriter) {
-	cont.Container.RenderTemplate(writer)
 }
 
 func NewPage(style *css.Css, title string, body ...Templated) *PageContainer {
